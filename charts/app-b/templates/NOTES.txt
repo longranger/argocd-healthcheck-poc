@@ -1,0 +1,5 @@
+This chart deploys a dependent application (App B) that continuously tries to connect to Redis (App A).
+
+You can check the logs of the App B pod to see connection attempts:
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "app-b.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  kubectl logs -f $POD_NAME

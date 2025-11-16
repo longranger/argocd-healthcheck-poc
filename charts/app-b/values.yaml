@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: busybox
+  pullPolicy: IfNotPresent
+  tag: "1.36" # Using busybox for netcat
+
+service:
+  type: ClusterIP
+  port: 80 # A dummy port, as this app won't expose a service
+
+redisHost: app-a-redis # Service name of App A
+redisPort: 6379

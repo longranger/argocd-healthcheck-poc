@@ -1,0 +1,9 @@
+This chart deploys a Redis instance.
+
+To connect to Redis from within the cluster, use the service:
+{{ include "app-a.fullname" . }}:{{ .Values.redisPort }}
+
+To connect from your local machine using kubectl port-forward:
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "app-a.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME {{ .Values.redisPort }}:{{ .Values.redisPort }}
+  echo "You can now connect to Redis at 127.0.0.1:{{ .Values.redisPort }}"

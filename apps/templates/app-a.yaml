@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-a-redis
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/longranger/argocd-healthcheck-poc.git
+    targetRevision: HEAD
+    path: charts/app-a
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default # Deploy App A to the default namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

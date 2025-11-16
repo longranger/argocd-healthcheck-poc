@@ -1,0 +1,6 @@
+apiVersion: v2
+name: app-b-dependent
+description: A Helm chart for a dependent application (App B) that connects to Redis (App A)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

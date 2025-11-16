@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-applications
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/longranger/argocd-healthcheck-poc.git
+    targetRevision: HEAD
+    path: apps/templates
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
