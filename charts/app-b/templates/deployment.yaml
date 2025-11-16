@@ -18,7 +18,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "redis:7.2.4-alpine"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["redis-cli", "-h", "app-a-redis", "-p", "6379", "ping"]
+          command: ["sh", "-c", "redis-cli -h app-a-redis -p 6379 ping && echo 'Successfully connected to Redis, container will now sleep.' && sleep 3600"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
