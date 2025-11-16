@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "redis:7.2.4-alpine"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["sh", "-c", "while true; do nc -vz {{ .Values.redisHost }} {{ .Values.redisPort }} && echo 'Successfully connected to Redis' || echo 'Failed to connect to Redis'; sleep 5; done"]
+          command: ["redis-cli", "-h", "app-a-redis", "-p", "6379", "ping"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
