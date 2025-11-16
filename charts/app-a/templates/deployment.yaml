@@ -36,7 +36,7 @@ spec:
               command:
                 - redis-cli
                 - ping
-            initialDelaySeconds: 5
+            initialDelaySeconds: 30 # Increased delay to demonstrate the problem
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 6
