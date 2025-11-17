@@ -33,6 +33,10 @@ echo "🌐 Starting port-forward in the background..."
 nohup kubectl port-forward svc/argocd-server -n argocd 8080:443 >/dev/null 2>&1 &
 PORT_FORWARD_PID=$!
 
+# 5. Deploy the Root Application
+echo "🚀 Deploying the root application..."
+kubectl apply -f apps/root.yaml
+
 echo ""
 echo "✅ ArgoCD is ready!"
 echo "--------------------------------------------------------"
