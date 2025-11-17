@@ -20,6 +20,7 @@ helm repo update > /dev/null
 # Install with no password overrides. Let the chart generate the secret.
 helm install argocd argo/argo-cd \
   --namespace argocd \
+  -f argocd-health-check-values.yaml \
   --wait
 
 # 3. Retrieve the auto-generated password
